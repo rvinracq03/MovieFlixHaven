@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix Haven</title>
+<meta name="description" content="Netflix Haven - Your go-to place for free movie streaming with a vast library of movies, TV shows, and documentaries.">
+<meta name="keywords" content="movies, streaming, free movies, TV shows, documentaries">
+<meta name="author" content="Netflix Haven">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #141414;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background-image: url('hero-background1.jpg'); /* Add your background image URL here */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.header {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #111;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    margin-top: 60px; /* Adjusted for header height */
+    background-color: #222;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    margin-top: 80px; /* Adjusted for header and navbar height */
+}
+
+.movie-title {
+    margin: 10px 0;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.video-player {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.video-player img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.middle-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: url('https://img.icons8.com/ios-filled/100/ffffff/play--v1.png') no-repeat center center;
+    background-size: 80px 80px;
+    cursor: pointer;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.play-button {
+    width: 30px;
+    height: 30px;
+    background: url('https://img.icons8.com/ios-filled/50/ffffff/play--v1.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 5px;
+    margin: 0 10px;
+    background: #444;
+    cursor: pointer;
+    position: relative;
+    top: 5px; /* Adjust alignment */
+}
+
+.progress-filled {
+    height: 100%;
+    background: #ff0000;
+    width: 0;
+}
+
+.fullscreen-button {
+    width: 30px;
+    height: 30px;
+    background: url('https://img.icons8.com/ios-filled/50/ffffff/full-screen.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.download-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.download-button:hover {
+    background-color: #cc0000;
+}
+
+.description {
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+.footer {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #111;
+    text-align: center;
+    margin-top: auto; /* Move footer to the bottom */
+    font-size: 14px;
+    color: #777;
+}
+
+@media (max-width: 480px) {
+    .middle-play-button {
+        width: 60px;
+        height: 60px;
+        background-size: 60px 60px;
+    }
+
+    .play-button, .fullscreen-button {
+        width: 25px;
+        height: 25px;
+    }
+
+    .header {
+        font-size: 22px;
+    }
+
+    .navbar a {
+        margin: 0 10px;
+        font-size: 16px;
+    }
+
+    .download-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 320px) {
+    .middle-play-button {
+        width: 50px;
+        height: 50px;
+        background-size: 50px 50px;
+    }
+
+    .play-button, .fullscreen-button {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header {
+        font-size: 20px;
+    }
+
+    .navbar a {
+        margin: 0 5px;
+        font-size: 14px;
+    }
+
+    .download-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="header" onclick="window.location.href='https://ptugnins.net/4/7523889'">Netflix Haven</div>
+<div class="navbar">
+<a href="#" onclick="window.location.href='https://ptugnins.net/4/7523889'">Home</a>
+<a href="#" onclick="window.location.href='https://ptugnins.net/4/7523889'">Movies</a>
+<a href="#" onclick="window.location.href='https://ptugnins.net/4/7523889'">Series</a>
+<a href="#" onclick="window.location.href='https://ptugnins.net/4/7523889'">My List</a>
+</div>
+<div class="container">
+<div class="movie-title">Trending Movie 2024</div>
+<div class="video-player">
+<img src="https://i.postimg.cc/wvQKV082/maxresdefault.jpg" alt="Video Thumbnail" onclick="window.location.href='https://ptugnins.net/4/7523889'">
+<div class="middle-play-button" onclick="window.location.href='https://ptugnins.net/4/7523889'"></div>
+<div class="video-controls">
+<div class="play-button" onclick="window.location.href='https://ptugnins.net/4/7523889'"></div>
+<div class="progress-bar">
+<div class="progress-filled"></div>
+</div>
+<div class="fullscreen-button"></div>
+</div>
+</div>
+<div class="download-buttons">
+<a href="https://ptugnins.net/4/7523889" class="download-button">Download 720p</a>
+<a href="https://ptugnins.net/4/7523889" class="download-button">Download 1080p</a>
+</div>
+<div class="description">
+Netflix Haven is a free movie streaming website that offers a vast library of movies, TV shows for you to enjoy from the comfort of your own home.
+<br><br>
+    <a href="#" class="download-button" onclick="window.location.href='https://ptugnins.net/4/7523889'">Start Watching Now</a>
+</div>
+</div>
+<div class="footer">
+<p>&copy; 2024 Netflix Haven. All rights reserved.</p>
+</div>
+</body>
+</html>
+
