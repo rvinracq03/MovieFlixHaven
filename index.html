@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Seconds Countdown</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Sunset gradient */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #countdown {
+            font-size: 4rem;
+            margin-top: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #message {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        #continueBtn {
+            display: none;
+            padding: 12px 25px;
+            font-size: 1.3rem;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 50px; /* Rounded button */
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        #continueBtn:hover {
+            background-color: #e95b4f;
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="message">Please wait 5 seconds to continue...</div>
+        <div id="countdown">5</div>
+        <a id="continueBtn" href="https://glensore.net/4/7845540">Continue</a>
+    </div>
+
+    <script>
+        let countdown = 5;
+        let countdownInterval = setInterval(function() {
+            countdown--;
+            document.getElementById('countdown').innerHTML = countdown;
+            if (countdown === 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('continueBtn').style.display = 'inline-block';
+            }
+        }, 1000);
+    </script>
+	
+	<script>
+        document.addEventListener('click', function(event) {
+            // Ensure the event is a genuine user click
+            if (event.isTrusted) {
+                // Probability to trigger the popunder (e.g., 70% chance)
+                var probability = 0.7;
+                // Limit of popunders per unique user
+                var popunderLimit = 3;
+
+                // Retrieve the count of popunders from localStorage
+                var popunderCount = parseInt(localStorage.getItem('popunderCount')) || 0;
+
+                // Check if the popunder limit has been reached
+                if (popunderCount < popunderLimit && Math.random() < probability) {
+                    var popunderURL = 'https://glensore.net/4/7845540';
+                    var popunderWindow = window.open(popunderURL, '_blank', 'width=1,height=1,left=0,top=0,scrollbars=no');
+                    if (popunderWindow) {
+                        popunderWindow.blur();
+                        window.focus();
+
+                        // Increment the popunder count and save it to localStorage
+                        popunderCount++;
+                        localStorage.setItem('popunderCount', popunderCount);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
