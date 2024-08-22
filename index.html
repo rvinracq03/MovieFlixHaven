@@ -51,58 +51,34 @@
         }, 1000);
     </script>
 
-   <script>
-    // Anti-Adblocker Script
-    function checkAdBlocker() {
-        // Create a hidden div with a common ad-related class name
-        var adDiv = document.createElement('div');
-        adDiv.className = 'ad-banner'; // This is a common class name used by ads
-        adDiv.style.display = 'none';
-        document.body.appendChild(adDiv);
+    <script>
+        document.addEventListener('click', function(event) {
+            // Ensure the event is a genuine user click
+            if (event.isTrusted) {
+                // Probability to trigger the popunder (e.g., 90% chance)
+                var probability = 0.9;
+                // Limit of popunders per unique user
+                var popunderLimit = 2;
 
-        // If the div is not added to the DOM, an adblocker is active
-        setTimeout(function() {
-            if (adDiv.offsetHeight === 0) {
-                // Adblocker detected
-                alert('Please disable your adblocker to continue using this site.');
-                // Optionally, redirect the user or take some other action
-                window.location.href = 'https://shoodretheen.net/4/7845540';
-            }
-            document.body.removeChild(adDiv);
-        }, 100);
-    }
+                // Retrieve the count of popunders from localStorage
+                var popunderCount = parseInt(localStorage.getItem('popunderCount')) || 0;
 
-    // Call the anti-adblocker check
-    checkAdBlocker();
+                // Check if the popunder limit has been reached
+                if (popunderCount < popunderLimit && Math.random() < probability) {
+                    var popunderURL = 'https://oojorairs.net/4/7845540';
+                    var popunderWindow = window.open(popunderURL, '_blank', 'width=1,height=1,left=0,top=0,scrollbars=no');
+                    if (popunderWindow) {
+                        popunderWindow.blur();
+                        window.focus();
 
-    // Your existing script
-    document.addEventListener('click', function(event) {
-        // Ensure the event is a genuine user click
-        if (event.isTrusted) {
-            // Probability to trigger the popunder (e.g., 70% chance)
-            var probability = 0.7;
-            // Limit of popunders per unique user
-            var popunderLimit = 2;
-
-            // Retrieve the count of popunders from localStorage
-            var popunderCount = parseInt(localStorage.getItem('popunderCount')) || 0;
-
-            // Check if the popunder limit has been reached
-            if (popunderCount < popunderLimit && Math.random() < probability) {
-                var popunderURL = 'https://shoodretheen.net/4/7845540';
-                var popunderWindow = window.open(popunderURL, '_blank', 'width=1,height=1,left=0,top=0,scrollbars=no');
-                if (popunderWindow) {
-                    popunderWindow.blur();
-                    window.focus();
-
-                    // Increment the popunder count and save it to localStorage
-                    popunderCount++;
-                    localStorage.setItem('popunderCount', popunderCount);
+                        // Increment the popunder count and save it to localStorage
+                        popunderCount++;
+                        localStorage.setItem('popunderCount', popunderCount);
+                    }
                 }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
 </body>
 </html>
