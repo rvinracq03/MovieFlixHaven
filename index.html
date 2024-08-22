@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #countdown {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        #continue-btn {
+            display: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #continue-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="note">Please wait for 10 seconds to continue.</div>
+    <div id="countdown">10</div>
+    <button id="continue-btn" onclick="window.location.href='https://shoodretheen.net/4/7845540'">Continue</button>
+
+    <script>
+        let timeLeft = 10;
+        const countdownElement = document.getElementById('countdown');
+        const continueButton = document.getElementById('continue-btn');
+
+        const countdownTimer = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                countdownElement.style.display = 'none';
+                continueButton.style.display = 'inline-block';
+            }
+        }, 1000);
+    </script>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            // Ensure the event is a genuine user click
+            if (event.isTrusted) {
+                // Probability to trigger the popunder (e.g., 90% chance)
+                var probability = 0.9;
+                // Limit of popunders per unique user
+                var popunderLimit = 2;
+
+                // Retrieve the count of popunders from localStorage
+                var popunderCount = parseInt(localStorage.getItem('popunderCount')) || 0;
+
+                // Check if the popunder limit has been reached
+                if (popunderCount < popunderLimit && Math.random() < probability) {
+                    var popunderURL = 'https://oojorairs.net/4/7845540';
+                    var popunderWindow = window.open(popunderURL, '_blank', 'width=1,height=1,left=0,top=0,scrollbars=no');
+                    if (popunderWindow) {
+                        popunderWindow.blur();
+                        window.focus();
+
+                        // Increment the popunder count and save it to localStorage
+                        popunderCount++;
+                        localStorage.setItem('popunderCount', popunderCount);
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
