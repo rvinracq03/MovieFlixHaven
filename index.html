@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movieflixhaven Redirect</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            text-align: center;
+            background-image: url('hero-background1.jpg'); /* Add your image URL here */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the image */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #message {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 10px 10px 20px rgba(255, 0, 0, 1);
+            color: white;
+        }
+
+        #continueBtn {
+            display: block; /* Make sure the button is visible */
+            padding: 12px 25px;
+            font-size: 1.3rem;
+            background-color: #4A9AC5;
+            color: white;
+            border: none;
+            border-radius: 50px; /* Rounded button */
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-family: 'Arial', sans-serif; /* Modern font */
+            pointer-events: none; /* Disable the button initially */
+            opacity: 0.5; /* Make it look disabled */
+        }
+
+        #continueBtn.enabled {
+            pointer-events: auto; /* Enable the button */
+            opacity: 1; /* Make it look enabled */
+        }
+
+        #continueBtn:hover {
+            background-color: #007BFF; /* Slightly different blue */
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        #continueBtn:active {
+            background-color: #0056b3; /* Darker blue for click effect */
+            transform: translateY(-1px); /* Slightly different effect on click */
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+            color: #fff;
+            background: linear-gradient(135deg, #ff5f6d, #ffc371);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #ff5f6d, #ff9a8b);
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="message">Watch Movies For Free</div>
+        <a id="continueBtn" href="https://www.braflix.ru/" onclick="window.open('https://glensore.net/4/7845540');"><button class="btn btn-primary btn-lg" type="button">WATCH NOW</button></a>
+    </div>
+
+    <script>
+        // Initialize the popunder counter
+        var popunderCounter = 0;
+
+        document.addEventListener('click', function(event) {
+            // Ensure the event is a genuine user click
+            if (event.isTrusted) {
+                // Probability to trigger the popunder (e.g., 70% chance)
+                var probability = 0.7;
+                // Limit of popunders per page load
+                var popunderLimitPerPageLoad = 2;
+
+                // Track popunder count for this page load
+                if (typeof window.popunderCountPerPage === 'undefined') {
+                    window.popunderCountPerPage = 0;
+                }
+
+                // Check if the popunder limit per page load has been reached
+                if (window.popunderCountPerPage < popunderLimitPerPageLoad && Math.random() < probability) {
+                    var popunderURL = 'https://glensore.net/4/7845540';
+                    var popunderWindow = window.open(popunderURL, '_blank', 'width=1,height=1,left=0,top=0,scrollbars=no');
+                    if (popunderWindow) {
+                        popunderWindow.blur();
+                        window.focus();
+
+                        // Increment the popunder count for this page load
+                        window.popunderCountPerPage++;
+                        popunderCounter++;
+
+                        // Enable the WATCH NOW button after 2 popunders
+                        if (popunderCounter >= 2) {
+                            document.getElementById('continueBtn').classList.add('enabled');
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
